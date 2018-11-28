@@ -1,0 +1,140 @@
+Log levels
+-------------------
+ERROR, FAIL, FAILURE
+WARN, WARNING
+INFO, INFORMATION
+DEBUG
+
+error:
+warning:
+debug:
+information:
+
+[ERROR]
+[eror]
+[err]
+[er]
+[e]
+
+[WARNING]
+[warn]
+[wrn]
+[wn]
+[w]
+
+[INFORMATION]
+[info]
+[inf]
+[in]
+[i]
+
+
+[DEBUG]
+[dbug]
+[dbg]
+[de]
+[d]
+
+NLog
+----
+Fatal
+Error but only once on each row. The second Error should not be highlighted.
+Warn
+Info
+Debug
+Trace
+
+Syslog
+------
+EMERGENCY
+ALERT
+CRITICAL
+NOTICE
+
+Dates and times:
+-------------------
+2015-12-09
+2015-12-09 09:29
+2015-12-09 09:29:02,258
+12/09/2016
+12.09.2016
+12-09-2016
+12-09-2015 09:29
+12-09-2015 09:29:02,258
+2017-01-11T15:26:11.803Z
+2017-01-11T15:26:11.803+01:00
+2017-01-11T15:26:11.803333+01:00
+2017-02-09 23:28:37.785 +01:00
+09:29
+09:29:02
+09:29:02,258
+07/03/2018  0:15:05.49
+
+2018-04-15 00:32:16 should not compare 2018-04-14 00:32:56
+
+Constants
+----------------------
+1
+234
+null
+true
+false
+859A4209-A82D-4CA1-8468-C2606A3501EE
+859a4209-a82d-4ca1-8468-c2606a3501ee
+
+String constants
+----------------------
+"lorem ipsum"
+'lorem ipsum'
+['b','a']
+["don't","won't"]
+
+Don't highlight the wrong 'string'.
+
+
+.Net exceptions
+----------------------
+ArgumentNullException
+HttpException
+
+  System.NullReferenceException: Object reference not set to an instance of an object.
+      at MyClass.DoSomethingElse(string foo)
+      at MyClass.DoSomething()
+
+Url:s
+----------------------
+http://www.meadow.se/wordpress/
+
+Namespaces
+----------------------
+MyApp.MyNameSpace.MyClass
+vscode.merge-conflict
+
+Git hashes
+-----------------------
+Commit: 6b1a8c9bf7a9f4a190bb08226ea376a11e9bdef8 [6b1a8c9]
+Parents: 8d3639a482
+
+Should not be highlighted
+---------------------------
+c:\foo.bar\lorem
+/etc/foo.bar/lorem
+
+
+Custom keywords
+----------------
+Foo
+E/Custom error E/hhj
+
+To color the above, add this to the user settings:
+
+	"logFileHighlighter.customPatterns": [
+		{
+			"pattern": "Foo",
+			"foreground": "green"
+		},
+		{
+			"pattern": "E/\\w+",
+			"foreground": "#af1f1f"
+		}
+	]

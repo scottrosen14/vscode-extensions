@@ -1,0 +1,38 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - '8'
+
+os:
+  - osx
+  - linux
+
+stages:
+  - test
+  - name: release
+    if: branch = master AND type = push AND fork = false
+
+before_install:
+  - if [ $TRAVIS_OS_NAME == "linux" ]; then
+      export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
+      sudo apt-get --assume-yes install libsecret-1-0;
+      sh -e /etc/init.d/xvfb start;
+      sleep 3;
+    fi
+
+install:
+  - npm install
+  - npm run vscode:prepublish
+
+script:
+  - npm run lint --silent
+  - npm test --silent
+
+jobs:
+  include:
+    - stage: release
+      os: linux
+      script: npm run semantic-release
+

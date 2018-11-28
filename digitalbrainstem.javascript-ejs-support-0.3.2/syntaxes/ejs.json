@@ -1,0 +1,186 @@
+{
+	"version": "0.2.3",
+	"name": "Embedded Javascript",
+	"scopeName": "text.html.ejs",
+	"fileTypes": [
+		"ejs"
+	],
+	"patterns": [
+		{
+			"include": "text.html.basic"
+		},
+		{
+			"include": "#general-includes"
+		},
+		{
+			"include": "#ejs-all"
+		}
+		
+	],
+	"repository": {
+		"comments": {
+			"begin": "(\\s*)<(%|\\?)#",
+			"captures": {
+				"0": {
+					"name": "punctuation.definition.comment.source.ejs"
+				}
+			},
+			"end": "(\\s*)(%|\\?)>",
+			"name": "comment.block.ejs"
+		},
+		"line-comments": {
+			"name": "comment.line.double-slash.ejs",
+			"begin": "(\\s*)<(%|\\?)//",
+			"end": "$(\\s)(%|\\?)>"
+		},
+		"block-comments": {
+			"name": "comment.block.ejs",
+			"begin": "<(%|\\?)(\\s?/\\*)",
+			"end": "((%|\\?)>)"
+		},
+		"general-includes": {
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"include": "text.html.basic"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#line-comments"
+				},
+				{
+					"include": "#block-comments"
+				}
+			]
+		},
+		"ejs-control-tag": {
+			"match": "(?!(?:(<(%|\\?))))\\s*.*\\s*(?=(((%|\\?)>)))",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#ejs-tag"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "$self"
+				},
+				{
+					"include": "#ejs-tag"
+				}
+			]
+		},
+		"ejs-multi": {
+			"begin": "\\G",
+			"end": "(?=((%|\\?)>))",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "text.html.basic"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "$self"
+				},
+				{
+					"include": "#ejs-tag-global"
+				}
+			]
+		},
+		"ejs-all": {
+			"begin": "<(%|\\?)",
+			"end": "(%|\\?)>",
+			"name": "keyword.begin.tag.ejs",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"include": "text.html.basic"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include":"#ejs-inline"
+				},
+				{
+					"include": "#ejs-control-tag"
+				},
+				{
+					"include": "#ejs-multi"
+				}
+			]
+		},
+		"ejs-inline":{
+			"begin":"((?!<(%|\\?))=)",
+			"end":"(?=(%|\\?)>)",
+			"patterns":[
+				{
+					"include":"#ejs-tag-global"
+				}
+			]
+		},
+		"ejs-begin-tag": {
+			"match": "<(%|\\?)",
+			"name": "keyword.begin.tag.ejs"
+		},
+		"ejs-end-tag": {
+			"match": "(%|\\?)>",
+			"name": "keyword.end.tag.ejs"
+		},	
+		"ejs-tag": {
+			"begin": "(?!(<(%|\\?)))",
+			"end": "(%|\\?)>",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"include": "#general-includes"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "$self"
+				},
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"ejs-tag-global": {
+			"begin": "\\G",
+			"end": "(?=((%|\\?)>))",
+			"patterns": [
+				{
+					"include": "$self"
+				},
+				{
+					"include": "source.js"
+				}
+			]
+		}
+	}
+}

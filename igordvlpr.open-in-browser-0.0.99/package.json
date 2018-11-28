@@ -1,0 +1,105 @@
+{
+	"name": "open-in-browser",
+	"displayName": "Open in Browser",
+	"description": "Opens HTML files in a browser of user's choice.",
+	"version": "0.0.99",
+	"publisher": "igordvlpr",
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"homepage": "https://github.com/igorskyflyer/vscode-open-in-browser/blob/master/README.md",
+	"author": {
+		"name": "Igor Dimitrijević"
+	},
+	"icon": "assets/icon.png",
+	"engines": {
+		"vscode": "^1.19.0"
+	},
+	"bugs": {
+		"url": "https://github.com/igorskyflyer/vscode-open-in-browser/issues",
+		"email": "igor.dvlpr@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/igorskyflyer/vscode-open-in-browser.git"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"html",
+		"browser",
+		"preview",
+		"code",
+		"tool"
+	],
+	"activationEvents": [
+		"onCommand:extension.open",
+		"onCommand:extension.select",
+		"onLanguage:html"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.open",
+				"title": "Open in Browser"
+			},
+			{
+				"command": "extension.select",
+				"title": "Select Your Default Browser..."
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.open",
+				"key": "ctrl+shift+f9",
+				"mac": "cmd+alt+b",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "extension.select",
+				"key": "ctrl+shift+f5",
+				"mac": "cmd+alt+s",
+				"when": "editorTextFocus"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "Open in Browser configuration",
+			"properties": {
+				"openInBrowser.defaultBrowser": {
+					"type": "string",
+					"default": "Default",
+					"description": "The browser to open HTML files in.",
+					"enum": [
+						"Default",
+						"Chrome",
+						"Firefox",
+						"Internet Explorer",
+						"Opera",
+						"Safari"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"@types/node": "^7.0.43"
+	},
+	"dependencies": {
+		"registry-apppaths": "^1.1.20"
+	},
+	"__metadata": {
+		"id": "533082a1-4e5f-448a-bc99-13715bbfe13d",
+		"publisherId": "83b2a75e-0027-4bb1-b203-f34e3f3571d0",
+		"publisherDisplayName": "Igor Dimitrijević"
+	}
+}

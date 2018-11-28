@@ -1,0 +1,47 @@
+{
+	"name": "findfile",
+	"displayName": "Find File",
+	"description": "find file in current floder",
+	"version": "0.0.4",
+	"publisher": "HastenS",
+	"engines": {
+		"vscode": "^1.0.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.findFile"
+	],
+	"main": "./extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.findFile",
+				"title": "Find File"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.findFile",
+				"key": "alt+f1"
+			}
+		]
+	},
+	"icon": "images/icon.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/HastenS/findFile.git"
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"devDependencies": {
+		"vscode": "^0.11.0"
+	},
+	"__metadata": {
+		"id": "a23760ee-88b8-4093-914d-9fe815049892",
+		"publisherId": "fdbf8adb-4ac7-4e49-b765-d55ba62b420b",
+		"publisherDisplayName": "sihuashan"
+	}
+}

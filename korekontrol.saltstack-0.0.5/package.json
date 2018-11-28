@@ -1,0 +1,70 @@
+{
+	"name": "saltstack",
+	"version": "0.0.5",
+	"publisher": "korekontrol",
+	"author": {
+		"name": "Marek Obuchowicz"
+	},
+	"license": "MIT",
+	"icon": "icon.png",
+	"description": "SaltStack jinja template language support",
+	"displayName": "SaltStack",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/korekontrol/vscode-saltstack.git"
+	},
+	"bugs": {
+		"url": "https://github.com/korekontrol/vscode-saltstack/issues"
+	},
+	"categories": [
+		"Languages"
+	],
+	"engines": {
+		"vscode": "^1.19.0"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "sls",
+				"aliases": [
+					"SaltStack",
+					"salt",
+					"pillar"
+				],
+				"extensions": [
+					".sls"
+				],
+				"configuration": "./jinja.configuration.json"
+			},
+			{
+				"id": "jinja",
+				"aliases": [
+					"j2",
+					"jinja2"
+				],
+				"extensions": [
+					".jinja",
+					".j2"
+				],
+				"configuration": "./jinja.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "jinja",
+				"scopeName": "source.jinja",
+				"path": "./syntaxes/jinja.json"
+			},
+			{
+				"language": "sls",
+				"scopeName": "text.yaml.jinja",
+				"path": "./syntaxes/sls.json"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "6bd8cb09-66da-475f-889f-e99c495e07b9",
+		"publisherId": "49639ed3-abc1-40bf-86f8-c630978d7213",
+		"publisherDisplayName": "korekontrol"
+	}
+}
